@@ -20,21 +20,24 @@ def bfs_berbobot(graf, awal, tujuan):
 
         if simpul == tujuan:
             return jalur, jarak  # Kembalikan jalur dan total jarak
-
+    
         for tetangga, bobot in graf.get(simpul, {}).items():
             heapq.heappush(queue, (jarak + bobot, tetangga, jalur + [tetangga]))
 
     return None, float('inf')  # Jika tidak ditemukan jalur
 
 
-# Data graf berbasis jaringan kecamatan Surabaya
-graf = {
-    'Gubeng': { 'Mulyorejo': 4, 'Sukolilo': 3, 'Tambaksari': 3,'Tenggilis Mejoyo':9,},
-    'Gunung Anyar': {'Rungkut': 3, 'Tenggilis Mejoyo': 2},
-    'Mulyorejo': {'Gubeng': 4, 'Sukolilo': 2, 'Tambaksari': 3},
-    'Rungkut': {'Gunung Anyar': 3, 'Sukolilo': 4, 'Tenggilis Mejoyo': 2},
-    'Sukolilo': {'Gubeng': 3, 'Mulyorejo': 2, 'Rungkut': 4},
-    'Tambaksari': { 'Gubeng':2, 'Mulyorejo': 3},
-    'Tenggilis Mejoyo': {'Gunung Anyar': 2, 'Rungkut': 2,'Gubeng':5}
-}
+# Fungsi untuk menggambar graf dan rute terpendek
+def gambar_graf(graf, rute_terpendek):
+    G = nx.DiGraph()
+    for simpul, tetangga in graf.items():
+        for tujuan, jarak in tetangga.items():
+            G.add_edge(simpul, tujuan, weight=jarak)
+    
+    posisi = {  # Posisi koordinat untuk tata letak graf
+        'Gubeng': (8, 6), 'Gunung Anyar': (10, 3),
+        'Mulyorejo': (10.5, 6.5),'Rungkut': (10, 4),'Sukolilo': (10, 5), 
+        'Tambaksari': (8, 7), 'Tenggilis Mejoyo': (8, 4),
+       
+    }
 
