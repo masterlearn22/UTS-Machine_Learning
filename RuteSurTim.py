@@ -25,3 +25,15 @@ def bfs_berbobot(graf, awal, tujuan):
             heapq.heappush(queue, (jarak + bobot, tetangga, jalur + [tetangga]))
 
     return None, float('inf')  # Jika tidak ditemukan jalur
+
+
+# Data graf berbasis jaringan kecamatan Surabaya
+graf = {
+    'Gubeng': { 'Mulyorejo': 4, 'Sukolilo': 3, 'Tambaksari': 3,'Tenggilis Mejoyo':9,},
+    'Gunung Anyar': {'Rungkut': 3, 'Tenggilis Mejoyo': 2},
+    'Mulyorejo': {'Gubeng': 4, 'Sukolilo': 2, 'Tambaksari': 3},
+    'Rungkut': {'Gunung Anyar': 3, 'Sukolilo': 4, 'Tenggilis Mejoyo': 2},
+    'Sukolilo': {'Gubeng': 3, 'Mulyorejo': 2, 'Rungkut': 4},
+    'Tambaksari': { 'Gubeng':2, 'Mulyorejo': 3},
+    'Tenggilis Mejoyo': {'Gunung Anyar': 2, 'Rungkut': 2,'Gubeng':5}
+}
