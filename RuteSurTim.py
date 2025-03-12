@@ -88,3 +88,39 @@ def tampilkan_rute():
         gambar_graf(graf, rute)
     else:
         hasil_label.config(text="Tidak ada rute yang tersedia")
+        
+graf = {
+    'Gubeng': { 'Mulyorejo': 4, 'Sukolilo': 3, 'Tambaksari': 3,'Tenggilis Mejoyo':9,},
+    'Gunung Anyar': {'Rungkut': 3, 'Tenggilis Mejoyo': 2},
+    'Mulyorejo': {'Gubeng': 4, 'Sukolilo': 2, 'Tambaksari': 3},
+    'Rungkut': {'Gunung Anyar': 3, 'Sukolilo': 4, 'Tenggilis Mejoyo': 2},
+    'Sukolilo': {'Gubeng': 3, 'Mulyorejo': 2, 'Rungkut': 4},
+    'Tambaksari': { 'Gubeng':2, 'Mulyorejo': 3},
+    'Tenggilis Mejoyo': {'Gunung Anyar': 2, 'Rungkut': 2,'Gubeng':5}
+   
+}
+
+# GUI dengan Tkinter
+root = tk.Tk()
+root.title("Visualisasi Rute BFS")
+root.geometry("400x250")
+
+# Dropdown untuk memilih kecamatan awal dan tujuan
+kecamatan_list = list(graf.keys())
+tk.Label(root, text="Pilih Kecamatan Awal:").pack()
+dropdown_awal = ttk.Combobox(root, values=kecamatan_list)
+dropdown_awal.pack()
+
+tk.Label(root, text="Pilih Kecamatan Tujuan:").pack()
+dropdown_tujuan = ttk.Combobox(root, values=kecamatan_list)
+dropdown_tujuan.pack()
+
+# Tombol untuk mencari rute
+button = tk.Button(root, text="Tampilkan Rute", command=tampilkan_rute)
+button.pack()
+
+# Label untuk menampilkan hasil
+hasil_label = tk.Label(root, text="")
+hasil_label.pack()
+
+root.mainloop()
