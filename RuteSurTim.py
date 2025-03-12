@@ -20,7 +20,7 @@ def bfs_berbobot(graf, awal, tujuan):
 
         if simpul == tujuan:
             return jalur, jarak  # Kembalikan jalur dan total jarak
-
+    
         for tetangga, bobot in graf.get(simpul, {}).items():
             heapq.heappush(queue, (jarak + bobot, tetangga, jalur + [tetangga]))
 
