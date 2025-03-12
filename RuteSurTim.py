@@ -37,3 +37,4 @@ graf = {
     'Tambaksari': { 'Gubeng':2, 'Mulyorejo': 3},
     'Tenggilis Mejoyo': {'Gunung Anyar': 2, 'Rungkut': 2,'Gubeng':5}
 }
+
