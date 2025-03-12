@@ -41,3 +41,36 @@ def gambar_graf(graf, rute_terpendek):
        
     }
 
+
+    def koordinat():
+        # Ekstrak koordinat
+        x_values = [pos[0] for pos in posisi.values()]
+        y_values = [pos[1] for pos in posisi.values()]
+
+        # Plot titik-titik kecamatan
+        plt.figure(figsize=(8, 6))
+        plt.scatter(x_values, y_values, color='blue', marker='o')
+
+        # Tambahkan label kecamatan di setiap titik
+        for kecamatan, (x, y) in posisi.items():
+            plt.text(x, y, kecamatan, fontsize=9, verticalalignment='bottom', horizontalalignment='right')
+
+        # Label sumbu
+        plt.xlabel("Koordinat X")
+        plt.ylabel("Koordinat Y")
+        plt.title("Visualisasi Posisi Kecamatan dalam Grafik Cartesian")
+
+        # Tampilkan grid
+        plt.grid(True)
+        plt.show()
+    
+    koordinat()
+    
+    plt.figure(figsize=(12, 10))
+    nx.draw(G, posisi, with_labels=True, node_color='lightblue',  node_size=2000, font_size=10)
+    nx.draw_networkx_edge_labels(G, posisi, edge_labels={(u, v): d['weight'] for u, v, d in G.edges(data=True)})
+    
+    if rute_terpendek:
+        jalur = [(rute_terpendek[i], rute_terpendek[i+1]) for i in range(len(rute_terpendek)-1)]
+        nx.draw_networkx_edges(G, posisi, edgelist=jalur, edge_color='red', width=1, style='dashed')
+    plt.show()
