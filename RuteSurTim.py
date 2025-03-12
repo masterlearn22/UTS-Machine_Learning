@@ -74,3 +74,17 @@ def gambar_graf(graf, rute_terpendek):
         jalur = [(rute_terpendek[i], rute_terpendek[i+1]) for i in range(len(rute_terpendek)-1)]
         nx.draw_networkx_edges(G, posisi, edgelist=jalur, edge_color='red', width=1, style='dashed')
     plt.show()
+
+# Fungsi untuk menampilkan rute di GUI
+def tampilkan_rute():
+    awal = dropdown_awal.get()
+    tujuan = dropdown_tujuan.get()
+    if awal == tujuan:
+        hasil_label.config(text="Kecamatan awal dan tujuan tidak boleh sama!")
+        return
+    rute, jarak = bfs_berbobot(graf, awal, tujuan)
+    if rute:
+        hasil_label.config(text=f"Rute tercepat: {' -> '.join(rute)}\nTotal jarak: {jarak} km")
+        gambar_graf(graf, rute)
+    else:
+        hasil_label.config(text="Tidak ada rute yang tersedia")
